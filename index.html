@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-
-
-
+<script type="module">
+    import { ethers } from "https://cdn.ethers.io/lib/ethers-5.2.esm.min.js";
+    // Your code here...
+    // A Web3Provider wraps a standard Web3 provider, which is
+    // what MetaMask injects as window.ethereum into each page
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    
+    // MetaMask requires requesting permission to connect users accounts
+    await provider.send("eth_requestAccounts", []);
+    
+    // The MetaMask plugin also allows signing transactions to
+    // send ether and pay to change state within the blockchain.
+    // For this, you need the account signer...
+    const signer = provider.getSigner()
 <html>
-// A Web3Provider wraps a standard Web3 provider, which is
-// what MetaMask injects as window.ethereum into each page
-const provider = new ethers.providers.Web3Provider(window.ethereum)
-
-// MetaMask requires requesting permission to connect users accounts
-await provider.send("eth_requestAccounts", []);
-
-// The MetaMask plugin also allows signing transactions to
-// send ether and pay to change state within the blockchain.
-// For this, you need the account signer...
-const signer = provider.getSigner()
     <body>
         <h1>Hello!</h1>
         <button onclick="await provider.getBlockNumber()">show current Block height</button>
         <p>Made with Github pages!</p>
-        <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
     </body>
+</script>
 </html>
+
+
